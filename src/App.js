@@ -1,7 +1,8 @@
 import {useState} from "react";
 import "milligram"
 import LoginForm from "./components/LoginForm";
-import Greeting from "./components/Greeting";
+import UserPanel from "./components/UserPanel";
+import styled from "styled-components";
 
 function App() {
     const [loggedInEmail, setLoggedInEmail] = useState("");
@@ -11,11 +12,15 @@ function App() {
     const isLoggedIn = loggedInEmail !== ""
 
     return (
-        <div>
+        <Container>
             <h1>System do zapisów na zajęcia</h1>
-            {isLoggedIn ? <Greeting email={loggedInEmail} onLogout={onLogout}/> : <LoginForm onLogin={onLogin}/>}
-        </div>
+            {isLoggedIn ? <UserPanel email={loggedInEmail} onLogout={onLogout}/> : <LoginForm onLogin={onLogin}/>}
+        </Container>
     );
 }
 
 export default App;
+
+const Container = styled.div`
+    margin: 2rem;
+`
